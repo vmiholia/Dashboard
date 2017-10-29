@@ -1,0 +1,23 @@
+<?php
+$username = "root"; 
+$password = "m9YhAP0DLQRi";   
+$host = "34.212.87.72";
+$database="bitnami_moodle";
+$Class=$_GET['Class'];//"4 A";s
+$server = mysql_connect($host, $username, $password);
+$connection = mysql_select_db($database, $server);
+
+$output .='
+<table class="table" bordered="1">
+<tr>
+<th>col1</th>
+<th>col2</th>
+<th>col3</th>
+</tr>
+';
+
+$output .='</table>';
+header("Content-Type: application/xls");
+header("Content-Disposition: attachment, filename=greencard.xls");
+echo $output;
+?>

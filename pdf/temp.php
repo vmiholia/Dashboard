@@ -1,0 +1,524 @@
+<?php
+$username = "root"; 
+    $password = "m9YhAP0DLQRi";   
+    $host = "34.212.87.72";
+    $database="bitnami_moodle";
+date_default_timezone_set('Asia/Kolkata');
+    
+     $date= date('Y-m-d H:i:s');
+     $yesterday=date('Y-m-d H:i:s',strtotime("-1 day"));
+
+    $server = mysql_connect($host, $username, $password);
+    $connection = mysql_select_db($database, $server);
+require('..\fpdf\fpdf.php');
+//connect database
+//$host="localhost"; // Host name 
+//$username="root"; // Mysql username 
+//$password=""; // Mysql password 
+//$db_name="online_portal"; // Database name 
+//mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
+//mysql_select_db("$db_name")or die("cannot select DB");
+
+
+class PDF extends FPDF{
+	function Header()
+	{
+		$pageWidth = 205;
+		$pageHeight = 277;
+		$margin =4;
+		
+		$this->Rect( $margin-1, $margin-1 , $pageWidth - $margin +2 , $pageHeight+2 - $margin);
+		$this->Rect( $margin, $margin , $pageWidth - $margin , $pageHeight - $margin);
+		$image1 = "logo.PNG";
+
+		$this->SetTextColor(0,0,0);
+		$this->SetFont('Times','B',14);
+		$this->Image($image1,8,8,23.78);
+		$this->Cell(0,6,'LITTLE FLOWER PUBLIC SR. SECONDARY SCHOOL',0,1,'C');
+		$this->SetFont('Times','B',11);
+		$this->Cell(0,6,'An English Medium School Recognised by Delhi Admin, Affliated to C.B.S.E.',0,1,'C');
+		$this->Cell(0,6,'Shivaji Park, Shahdara, Delhi 110032, Ph. : 22325108,22328328',0,1,'C');
+		$this->Image($image1,175,8,23.78);
+		$this->Cell(0,6,'Website : www.lfpsdelhi.com, Email : lfps_sp@yahoo.com,lfpsss12@gmail.com',0,1,'C');
+		$this->SetDrawColor(0, 0, 255);
+		$this->SetLineWidth(.2);
+	}
+	function Footer(){
+		
+  //  $this->SetFont('Arial','I',8);
+    //Page number
+   // $this->Cell(0,16,'Page '.$this->PageNo().'/{nb}',0,0,'R');
+
+	}
+	function BuildTable($basic_info) {
+        //Colors, line width and bold font
+     	$this->SetMargins(4,0,4);
+		$this->SetTextColor(0);
+		$this->SetFillColor(255);
+		$this->SetDrawColor(0,0,0);
+		$this->SetLineWidth(.3);
+		$this->SetFont('','B',12);
+		$today = date("F j, Y");
+		$this->Cell(1,1,'',0,1,'L',1);
+		$this->SetFillColor(120);
+		$this->Cell(201,8,'TERM 1 PROGRESS REPORT - SESSION 2017-2018','LTBR',1,'C',1);
+		$this->SetFont('Times','B',9);
+		$this->SetFillColor(255);
+		$this->Cell(36,8,'Student Name     : ','LT',0,'L',1);
+		$this->Cell(49,8,$basic_info[0],'T',0,'L',1);
+		$this->Cell(26,8,'Adm No.              :','T',0,'L',1);
+		$this->Cell(30,8,$basic_info[6],'T',0,'T',1);
+		$this->Cell(25,8,'Class               :','T',0,'L',1);
+		$this->Cell(34,8,$basic_info[4],'T',1,'RT',1);
+		
+		$this->Cell(36,8,"Father's Name     : ",'L',0,'L',1);
+		$this->Cell(49,8,$basic_info[1],0,0,'L',1);
+		$this->Cell(26,8,'Date Of Birth      :',0,0,'L',1);
+		$this->Cell(30,8,$basic_info[3],0,0,'L',1);		
+		$this->Cell(25,8,'Section            :',0,0,'L',1);
+		$this->Cell(34,8,$basic_info[5],0,1,'TR',1);
+
+		$this->Cell(36,8,"Mother's Name     : ",'L',0,'L',1);
+		$this->Cell(49,8,$basic_info[2],0,0,'L',1);
+		$this->Cell(26,8,'Roll No.                :',0,0,'L',1);
+		$this->Cell(30,8,'/',0,0,'L',1);		
+		$this->Cell(25,8,'Attendance     :',0,0,'L',1);
+		$this->Cell(34,8,'/',0,1,"L",1);
+
+		$this->Cell(40,8,'Scholastic Areas:','LTR',0,'C',1);
+		$this->Cell(161,8,'TERM I','LTBR',1,'C',1);
+
+		$this->Cell(40,2,'','LTR',0,'C',1);
+
+		$this->Cell(27,2,'','LTR',0,'C',1);
+		$this->Cell(27,2,'','LTR',0,'C',1);
+		$this->Cell(27,2,'','LTR',0,'C',1);
+		$this->Cell(27,2,'','LTR',0,'C',1);
+		$this->Cell(27,2,'','LTR',0,'C',1);
+		$this->Cell(26,2,'','LTR',1,'C',1);
+
+		$this->Cell(40,3,'Sub Name','LR',0,'C',1);
+
+		$this->Cell(27,3,'Periodic Test','LR',0,'C',1);
+		$this->Cell(27,3,'Note Book','LR',0,'C',1);
+		$this->Cell(27,3,'Sub Enrichment','LR',0,'C',1);
+		$this->Cell(27,3,'Mid Term Exam','LR',0,'C',1);
+		$this->Cell(27,3,'Marks Obtained','LR',0,'C',1);
+		$this->Cell(26,3,'Grade','LR',1,'C',1);
+		
+		
+		
+		$this->Cell(40,2,'','LBR',0,'C',1);
+
+		$this->Cell(27,2,'','LBR',0,'C',1);
+		$this->Cell(27,2,'','LBR',0,'C',1);
+		$this->Cell(27,2,'','LBR',0,'C',1);
+		$this->Cell(27,2,'','LBR',0,'C',1);
+		$this->Cell(27,2,'','LBR',0,'C',1);
+		$this->Cell(26,2,'','LBR',1,'C',1);		
+
+
+		$this->Cell(40,6,'ENGLISH','LTBR',0,'C',1);
+		$this->Cell(27,6,'9','LTBR',0,'C',1);
+		$this->Cell(27,6,'4','LBTR',0,'C',1);
+		$this->Cell(27,6,'3','LBTR',0,'C',1);
+		$this->Cell(27,6,'70','LBTR',0,'C',1);
+		$this->Cell(27,6,'86','LBTR',0,'C',1);
+		$this->Cell(26,6,'A2','LBTR',1,'C',1);
+
+
+		$this->Cell(40,6,'HINDI','LTBR',0,'C',1);
+		$this->Cell(27,6,'9','LTBR',0,'C',1);
+		$this->Cell(27,6,'4','LBTR',0,'C',1);
+		$this->Cell(27,6,'3','LBTR',0,'C',1);
+		$this->Cell(27,6,'70','LBTR',0,'C',1);
+		$this->Cell(27,6,'86','LBTR',0,'C',1);
+		$this->Cell(26,6,'A2','LBTR',1,'C',1);
+
+		$this->Cell(40,6,'MATHEMATICS','LTBR',0,'C',1);
+		$this->Cell(27,6,'9','LTBR',0,'C',1);
+		$this->Cell(27,6,'4','LBTR',0,'C',1);
+		$this->Cell(27,6,'3','LBTR',0,'C',1);
+		$this->Cell(27,6,'70','LBTR',0,'C',1);
+		$this->Cell(27,6,'86','LBTR',0,'C',1);
+		$this->Cell(26,6,'A2','LBTR',1,'C',1);
+
+		$this->Cell(40,6,'SANSKRIT','LTBR',0,'C',1);
+		$this->Cell(27,6,'9','LTBR',0,'C',1);
+		$this->Cell(27,6,'4','LBTR',0,'C',1);
+		$this->Cell(27,6,'3','LBTR',0,'C',1);
+		$this->Cell(27,6,'70','LBTR',0,'C',1);
+		$this->Cell(27,6,'86','LBTR',0,'C',1);
+		$this->Cell(26,6,'A2','LBTR',1,'C',1);
+
+		$this->Cell(40,6,'SOCIAL SCIENCE','LTBR',0,'C',1);
+		$this->Cell(27,6,'9','LTBR',0,'C',1);
+		$this->Cell(27,6,'4','LBTR',0,'C',1);
+		$this->Cell(27,6,'3','LBTR',0,'C',1);
+		$this->Cell(27,6,'70','LBTR',0,'C',1);
+		$this->Cell(27,6,'86','LBTR',0,'C',1);
+		$this->Cell(26,6,'A2','LBTR',1,'C',1);
+		
+		$this->Cell(40,6,'SCIENCE','LTBR',0,'C',1);
+		$this->Cell(27,6,'9','LTBR',0,'C',1);
+		$this->Cell(27,6,'4','LBTR',0,'C',1);
+		$this->Cell(27,6,'3','LBTR',0,'C',1);
+		$this->Cell(27,6,'70','LBTR',0,'C',1);
+		$this->Cell(27,6,'86','LBTR',0,'C',1);
+		$this->Cell(26,6,'A2','LBTR',1,'C',1);
+
+		$this->Cell(201,6,'','LTBR',1,'C',1);
+		
+		
+		$this->Cell(165,8,'Scholastic Areas :  ','LBTR',0,'C',1);
+		$this->Cell(36,8,'Grade','BLTR',1,'C',1);
+
+		$this->Cell(165,6,'GK','LBTR',0,'L',1);
+		$this->Cell(36,6,'A2','BLTR',1,'C',1);
+
+		$this->Cell(165,6,'DRAWING','LBTR',0,'L',1);
+		$this->Cell(36,6,'A1','BLTR',1,'C',1);
+
+		$this->Cell(165,6,'COMPUTER','LBTR',0,'L',1);
+		$this->Cell(36,6,'A1','BLTR',1,'C',1);
+		
+		$this->Cell(201,6,'','LTBR',1,'C',1);
+		
+		
+		$this->Cell(165,8,'Co-Scholastic Areas:Term-I[on a 3-point(A-C)Grading Scale]  ','LBTR',0,'C',1);
+		$this->Cell(36,8,'Grade','BLTR',1,'C',1);
+		
+		$this->Cell(165,6,'Work Education(or Pre-vocational Education','LBTR',0,'L',1);
+		$this->Cell(36,6,'A2','BLTR',1,'C',1);
+
+		$this->Cell(165,6,'Art Education','LBTR',0,'L',1);
+		$this->Cell(36,6,'A1','BLTR',1,'C',1);
+
+		$this->Cell(165,6,'Health and Physical Education','LBTR',0,'L',1);
+		$this->Cell(36,6,'A1','BLTR',1,'C',1);
+		
+		
+		$this->Cell(165,8,'Discipline:Term-I[on a 3-point(A-C)Grading Scale]  ','LBTR',0,'C',1);
+		$this->Cell(36,8,'Grade','BLTR',1,'C',1);
+		
+		$this->Cell(165,6,'Discipline','LBTR',0,'L',1);
+		$this->Cell(36,6,'A2','BLTR',1,'C',1);
+		
+		$this->SetMargins(6,0,6);
+		$this->ln(4);
+		$this->Cell(195,12,'Participation in: Excellence performace','LTBR',1,'L',1);
+		$this->ln(4);
+		$this->Cell(195,12,'Remarks :','LTBR',1,'L',1);
+
+		$this->Cell(63,8,'Date : '.$today,'T',0,'L',1);
+		$this->ln(37);
+		$this->Cell(76,8,"Class Teacher'Sign ",0,0,'L',1);
+		$this->Cell(105,8,"Parent's Sign",0,0,'L',1);
+		$this->Cell(14,8,"Principle",0,0,'L',1);
+		    }
+		}
+	
+
+$pdf = new PDF();
+$pdf->AliasNbPages();
+
+//$pdf->Image('header.jpg');
+
+	
+$sql = "SELECT cc.name as School_Name,
+          c.fullname,
+          case
+              WHEN fullname LIKE 'Hindi%%%%' THEN 'Hindi'
+              WHEN fullname LIKE 'English%%%%' THEN 'English'
+              WHEN fullname LIKE 'Maths%%%%' THEN 'Maths'
+              WHEN fullname LIKE 'Social Studies%%%%' THEN 'Social Studies'
+              WHEN fullname LIKE 'Sanskrit%%%%' THEN 'Sanskrit'
+              WHEN fullname LIKE 'Science%%%%' THEN 'Science'
+              WHEN fullname LIKE 'EVS%%%%' THEN 'EVS'
+              WHEN fullname LIKE 'GK%%%%' THEN 'GK'
+              WHEN fullname LIKE 'Drawing%%%%' THEN 'Drawing'
+              WHEN fullname LIKE 'Moral Values%%%%' THEN 'Moral Values'
+              WHEN fullname LIKE 'Computer%%%%' THEN 'Computer'
+              ELSE 'NULL'
+          END AS Subject,
+          CASE
+              WHEN fullname LIKE '%%%%Nursery A' THEN 'Nursery A'
+              WHEN fullname LIKE '%%%%Nursery B' THEN 'Nursery B'
+              WHEN fullname LIKE 'Nursery C' THEN 'Nursery C'
+              WHEN fullname LIKE '%%%%KG A' THEN 'KG A'
+              WHEN fullname LIKE '%%%%KG B' THEN 'KG B'
+              WHEN fullname LIKE '%%%%KG C' THEN 'KG C'
+              WHEN fullname LIKE '%%%%1 A' THEN '1 A'
+              WHEN fullname LIKE '%%%%1 B' THEN '1 B'
+              WHEN fullname LIKE '%%%%1 C' THEN '1 C'
+              WHEN fullname LIKE '%%%%2 A' THEN '2 A'
+              WHEN fullname LIKE '%%%%2 B' THEN '2 B'
+              WHEN fullname LIKE '%%%%2 C' THEN '2 C'
+              WHEN fullname LIKE '%%%%3 A' THEN '3 A'
+              WHEN fullname LIKE '%%%%3 B' THEN '3 B'
+              WHEN fullname LIKE '%%%%3 C' THEN '3 C'
+              WHEN fullname LIKE '%%%%4 A' THEN '4 A'
+              WHEN fullname LIKE '%%%%4 B' THEN '4 B'
+              WHEN fullname LIKE '%%%%4 C' THEN '4 C'
+              WHEN fullname LIKE '%%%%5 A' THEN '5 A'
+              WHEN fullname LIKE '%%%%5 B' THEN '5 B'
+              WHEN fullname LIKE '%%%%5 C' THEN '5 C'
+              WHEN fullname LIKE '%%%%6 A' THEN '6 A'
+              WHEN fullname LIKE '%%%%6 B' THEN '6 B'
+              WHEN fullname LIKE '%%%%6 C' THEN '6 C'
+              WHEN fullname LIKE '%%%%7 A' THEN '7 A'
+              WHEN fullname LIKE '%%%%7 B' THEN '7 B'
+              WHEN fullname LIKE '%%%%7 C' THEN '7 C'
+              WHEN fullname LIKE '%%%%8 A' THEN '8 A'
+              WHEN fullname LIKE '%%%%8 B' THEN '8 B'
+              WHEN fullname LIKE '%%%%8 C' THEN '8 C'
+          END AS Class,
+          u.firstname as Student_Name,
+          gi.itemname as term_name,
+          
+          case
+          when gi.itemname like 'PT%%' then '10'
+          when gi.itemname = 'SEA 1' then '5'
+          when gi.itemname ='NS 1' then '5'
+          when gi.itemname = 'Half Yearly' then '80'
+          else '0'
+          end as Total_marks,
+        
+case when gi.itemname like 'PT%%' then max(round(g.finalgrade /2))  
+when gi.itemname = 'SEA 1' then round(g.finalgrade)
+when gi.itemname = 'NS 1' then round(g.finalgrade)
+when gi.itemname = 'Half Yearly' then round(g.finalgrade)
+ end as Max_Grade,
+
+case when gi.itemname like 'PT%%' then max(round(g.finalgrade/2)*100/10 )
+when gi.itemname = 'SEA 1' then round(g.finalgrade)*100/g.rawgrademax
+when gi.itemname = 'NS 1' then round(g.finalgrade)*100/g.rawgrademax
+when gi.itemname = 'Half Yearly' then round(g.finalgrade)*100/g.rawgrademax
+ end AS Percentage
+          
+   from bitnami_moodle.mdl_course_categories cc
+   join bitnami_moodle.mdl_course c on c.category = cc.id
+   JOIN bitnami_moodle.mdl_assign ag on ag.course = c.id
+   join bitnami_moodle.mdl_context ctx on ctx.instanceid = c.id
+   join bitnami_moodle.mdl_role_assignments ra on ra.contextid = ctx.id
+   join bitnami_moodle.mdl_user u on u.id = ra.userid
+   join bitnami_moodle.mdl_grade_items gi on gi.courseid = c.id
+   join bitnami_moodle.mdl_grade_grades g on g.userid = u.id
+   and gi.id = g.itemid
+   where cc.id = '16'
+     and ra.roleid ='5'
+     and gi.itemname = ag.name
+     and c.id NOT in('631',
+                     '632')
+     and c.fullname NOT in('Little Flowers',
+                           'Class KG B',
+                           'Class KG C',
+                           'Class 1 A',
+                           'Class 1 B',
+                           'Class 1 C',
+                           'Class 2 A',
+                           'Class 2 B',
+                           'Class 2 C',
+                           'Class 3 A',
+                           'Class 3 B',
+                           'Class 3 C',
+                           'Class 4 A',
+                           'Class 4 B',
+                           'Class 4 C',
+                           'Class 5 A',
+                           'Class 5 B',
+                           'Class 5 C',
+                           'Class 6 A',
+                           'Class 6 B',
+                           'Class 6 C',
+                           'Class 7 A',
+                           'Class 7 B',
+                           'Class 7 C',
+                           'Class 8 A',
+                           'Class 8 B',
+                           'Class 8 C') group by u.firstname,c.fullname order by c.fullname";
+$result = mysql_query($sql);
+if (false === $result) {
+	echo mysql_error();
+}
+// build the data array from the database records.
+/*While($row = mysql_fetch_array($result)) {
+	echo $row['Student_Name'];
+	echo $row['Class'];
+	echo $row['Subject'];
+	echo $row['Total_marks'];
+	echo $row['Max_Grade'];
+	echo $row['Percentage'];
+	echo $row['term_name'];
+
+	
+		echo "\n\n";
+}*/
+$sql = "SELECT 
+    Student_Name,
+    Class,subject,
+	sum(Total_marks) as Max_marks,
+    SUM(Max_grade) as Marks_obtained,	
+    AVG(Percentage) as percentage,
+    
+  
+    CASE
+        WHEN (AVG(Percentage)) > 90 THEN 'A1'
+        WHEN
+            (AVG(Percentage)) <= 90
+                AND (AVG(Percentage)) > 80
+        THEN
+            'A2'
+        WHEN
+            (AVG(Percentage)) <= 80
+                AND (AVG(Percentage)) > 70
+        THEN
+            'B1'
+        WHEN
+            (avg(Percentage)) <= 70
+                AND (avg(Percentage)) > 60
+        THEN
+            'B2'
+		WHEN
+            (avg(Percentage)) <= 60
+                AND (avg(Percentage)) > 50
+        THEN
+            'C1'
+        WHEN
+            (avg(Percentage)) <= 50
+                AND (avg(Percentage)) > 40
+        THEN
+            'C2'
+         
+        WHEN
+            (avg(Percentage)) <= 40
+                AND (avg(Percentage)) >= 33
+        THEN
+            'D' 
+        ELSE 'E(Needs Improvement)'
+    END AS GRADE
+FROM
+    RC4
+Where Class = '1 A'    
+GROUP BY Student_Name,Subject,class
+ORDER BY Student_Name,Class,subject;";
+$result = mysql_query($sql);
+if (false === $result) {
+	echo mysql_error();
+}
+// build the data array from the database records.
+While($row = mysql_fetch_array($result)) {
+	if($row['subject']=='English'){
+		$english=array($row['Max_marks'],$row['Marks_obtained'],$row['percentage'],$row['GRADE']);
+	}
+	else if($row['subject']=='Maths'){
+		$maths=array($row['Max_marks'],$row['Marks_obtained'],$row['percentage'],$row['GRADE']);
+	}
+	else if($row['subject']=='Hindi'){
+		$Hindi=array($row['Max_marks'],$row['Marks_obtained'],$row['percentage'],$row['GRADE']);
+	}
+	else if($row['subject']=='Sanskrit'){
+		$Sanskrit=array($row['Max_marks'],$row['Marks_obtained'],$row['percentage'],$row['GRADE']);
+	}
+	else if($row['subject']=='Science'){
+		$Science=array($row['Max_marks'],$row['Marks_obtained'],$row['percentage'],$row['GRADE']);
+	}
+	else if($row['subject']=='Social Science'){
+		$SS=array($row['Max_marks'],$row['Marks_obtained'],$row['percentage'],$row['GRADE']);
+	}
+
+	// echo $row['Student_Name'];
+	// echo $row['Class'];
+	// echo $row['subject'];
+	// echo $row['Max_marks'];
+	// echo $row['Marks_obtained'];
+	// echo $row['percentage'];
+	// echo $row['GRADE'];
+	// echo "<br>";
+}
+$stmt4 = ("SELECT `Class` AS `Class`,
+       `Admission_No` AS `Admission_No`,
+       `Student_name` AS `Student_name`,
+       `DOB` AS `DOB`,
+       `Fathers_name` AS `Fathers_name`,
+       `Mothers_name` AS `Mothers_name`,
+       `Contact_No` AS `Contact_No`,
+       `Address` AS `Address`
+FROM
+  (select cc.name,
+          c.fullname as Class ,
+          u.firstname as Student_name,
+          u.address as Address,
+          u.phone1 as Contact_No,
+          ui.fieldid,
+          uf.name as Field,
+          ui.data,
+          max(case
+                  when ui.fieldid = '1' then ui.data
+                  else 0
+              end) as DOB,
+          max(case
+                  when ui.fieldid = '2' then ui.data
+                  else 0
+              end) as Fathers_name,
+          max(case
+                  when ui.fieldid = '3' then ui.data
+                  else 0
+              end) as Mothers_name,
+          max(case
+                  when ui.fieldid = '4' then ui.data
+                  else 0
+              end) as Admission_No
+   from bitnami_moodle.mdl_course_categories cc
+   join bitnami_moodle.mdl_course c on cc.id = c.category
+   join bitnami_moodle.mdl_attendance a on a.course = c.id
+   join bitnami_moodle.mdl_context ctx on a.course = ctx.instanceid
+   join bitnami_moodle.mdl_role_assignments ra on ctx.id = ra.contextid
+   join bitnami_moodle.mdl_user_info_data ui on ra.userid = ui.userid
+   join bitnami_moodle.mdl_user u on ui.userid = u.id
+   join bitnami_moodle.mdl_user_info_field uf on uf.id = ui.fieldid
+   where cc.id = '16'
+     and ra.roleid = '5'
+     and uf.name not in ('clientid',
+                         'classn')
+     and a.course not in('632')
+   group by u.firstname) AS expr_qry
+WHERE `DOB` >= '1917-09-16 16:49:45'
+  AND `DOB` <= '2017-09-16 16:49:45'
+  And `Class` = 'Class 4 A'
+GROUP BY `Class`,
+         `Admission_No`,
+         `Student_name`,
+         `DOB`,
+         `Fathers_name`,
+         `Mothers_name`,
+         `Contact_No`,
+         `Address`
+ORDER BY COUNT(*) DESC");
+
+$basic = mysql_query($stmt4);
+if (false === $basic) {
+	echo mysql_error();
+}
+
+
+While($row = mysql_fetch_array($basic)) {
+	
+	$pdf->AddPage();
+	
+	$Student_name=$row['Student_name'];
+	$Fathers_name=$row['Fathers_name'];
+	$Mothers_name=$row['Mothers_name'];
+	$Class=substr($row['Class'],6,2);
+	$Section=substr($row['Class'],-1,1);
+	$DOB=$row['DOB'];
+	$Admission_No=$row['Admission_No'];
+	$basic_info=array($Student_name,$Fathers_name,$Mothers_name,$DOB,$Class,$Section,$Admission_No);
+	$pdf->BuildTable($basic_info);
+
+}
+$pdf->Output();
+
+
+
+?>

@@ -1,0 +1,12 @@
+<?php
+$username = "root"; 
+$password = "m9YhAP0DLQRi";   
+$host = "34.212.87.72";
+$database="bitnami_moodle";
+$Class=$_GET['Class'];//"4 A";s
+$server = mysql_connect($host, $username, $password);
+$connection = mysql_select_db($database, $server);
+
+
+
+?>
