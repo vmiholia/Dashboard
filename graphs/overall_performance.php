@@ -2542,6 +2542,19 @@ error: function(data) {
                 </div>
               </section>
 
+ <section class="content-header pull-right">
+                <h1>Single Marksheet Download</h1>
+
+                <div class="lg-lg-3 lg-md-3 lg-sm-3">
+                  <form action="../pdf/routed.php" method="post">
+                  <label for="classes">Enter Admission No.</label><br>
+                    <input type="number" name="adm">
+                  <br><br>
+                  <input type="submit" value="Download"></input>
+                </form>
+                </div>
+              </section>
+
               <section class="content-header pull-right">
                 <h1> Marksheet Download</h1>
                 <div class="lg-lg-3 lg-md-3 lg-sm-3">
