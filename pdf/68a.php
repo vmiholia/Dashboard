@@ -3,8 +3,10 @@ $username = "root";
 $password = "m9YhAP0DLQRi";   
 $host = "52.26.225.238";
 $database="bitnami_moodle";
-$Class=$_GET['Class'];//"4 A";
+$Class=$_GET['Class'];//"4 A"; 
+echo $Class;
 $Admission_No=$_GET['Adm_No'];
+echo $$Admission_No;
 $count=1;
 ini_set('max_execution_time', 3000);
 
@@ -16,10 +18,11 @@ else {
 
 }
 
+/*
 $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
 require('http://34.237.224.144/Dashboard/fpdf/fpdf.php');
-/*
+
 class PDF extends FPDF{
 	function Header()
 	{
