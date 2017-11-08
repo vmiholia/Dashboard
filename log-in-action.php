@@ -25,7 +25,7 @@ echo "Wrong Password !";
 else
 {    
 	$admno=$ro1["Admission_No"];
-	include ("../pdf/routed-1.php?adm=$admno");
+	header("location:../pdf/routed-1.php?adm=$admno");
 }
 }
 
