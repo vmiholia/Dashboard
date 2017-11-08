@@ -3,12 +3,12 @@ $username = "root";
 $password = "m9YhAP0DLQRi";   
 $host = "52.26.225.238";
 $database="bitnami_moodle";
-$Class=$_GET['Class'];//"4 A";s
+//$Class=$_GET['Class'];//"4 A";s
 $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
 
-$Adm_No=$_POST["adm"];
-//echo $Adm_No;
+$Adm_No=$_GET["adm"];
+echo $Adm_No;
 $q2="select Class from bitnami_moodle.attnd WHERE admno='".$Adm_No."'";
 
 $r2= mysql_query($q2);
