@@ -1,40 +1,37 @@
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <title>Simple and light sign up form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-<div class="container">
-  <h2>Horizontal form</h2>
-  <form class="form-horizontal" action="/action_page.php">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password:</label>
-      <div class="col-sm-10">          
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-      </div>
-    </div>
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
-      </div>
-    </div>
-  </form>
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class="user">
+    <header class="user__header">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+        <h1 class="user__title"><b>Enter your Credentials</b></h1>
+    </header>
+    
+    <form class="form" action="log-in-action.php" method="POST">
+        <div class="form__group">
+            <input type="text" name="username" placeholder="Username" class="form__input" />
+        </div>
+        <div class="form__group">
+            <input type="password" name="password" placeholder="Password" class="form__input" />
+        </div>
+        <button class="btn" type="submit" name="submit">Download Report Card</button>
+    </form>
 </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script  src="js/index.js"></script>
 
 </body>
 </html>
