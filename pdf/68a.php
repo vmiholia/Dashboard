@@ -21,9 +21,9 @@ else {
 
 $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
-/*
+
 require('http://34.237.224.144/Dashboard/fpdf/fpdf.php');
-*/
+/*
 class PDF extends FPDF{
 	function Header()
 	{
