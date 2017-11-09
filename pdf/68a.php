@@ -4,9 +4,9 @@ $password = "m9YhAP0DLQRi";
 $host = "52.26.225.238";
 $database="bitnami_moodle";
 $Class=$_GET['Class'];//"4 A"; 
-echo $Class;
+//echo $Class;
 $Admission_No=$_GET['Adm_No'];
-echo $Admission_No;
+//echo $Admission_No;
 $count=1;
 ini_set('max_execution_time', 3000);
 
