@@ -21,8 +21,8 @@ else {
 
 $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
-/*
-require('http://34.237.224.144/Dashboard/fpdf/fpdf.php');
+
+require_once('http://34.237.224.144/Dashboard/fpdf/fpdf.php');
 
 class PDF extends FPDF{
 	function Header()
@@ -426,5 +426,5 @@ $zip_name = $cname.".zip"; // Zip name
 	$myfile2 = fopen('files/'.$name, "r") or die("Unable to open file!");
 	fclose($myfile2);
 	$pdf->Output();
-*/
+
 ?>
