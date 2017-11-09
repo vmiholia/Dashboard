@@ -316,7 +316,7 @@ $this->SetFontSize(10);
 	}
 	
 
-/*
+
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 
@@ -391,9 +391,7 @@ if (false === $basic) {
 }
 $cname=$_GET['Class'];//"4 A";
 $Class=$cname;
-$zip = new ZipArchive();
-$zip_name = $cname.".zip"; // Zip name
-
+/*
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
