@@ -125,7 +125,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->WithAlpha = false;
 	$this->ws = 0;
 	// Font path
-	if(defined('FPDF_FONTPATH'))
+/*	if(defined('FPDF_FONTPATH'))
 	{
 		$this->fontpath = FPDF_FONTPATH;
 		if(substr($this->fontpath,-1)!='/' && substr($this->fontpath,-1)!='\\')
@@ -189,7 +189,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	// Enable compression
 	$this->SetCompression(true);
 	// Set default PDF version number
-	$this->PDFVersion = '1.3';
+	$this->PDFVersion = '1.3';*/
 }
 
 function SetMargins($left, $top, $right=null)
@@ -243,6 +243,7 @@ function SetDisplayMode($zoom, $layout='default')
 		$this->Error('Incorrect layout display mode: '.$layout);
 }
 
+/*
 function SetCompression($compress)
 {
 	// Set page compression
@@ -465,7 +466,7 @@ function Rect($x, $y, $w, $h, $style='')
 	else
 		$op = 'S';
 	$this->_out(sprintf('%.2F %.2F %.2F %.2F re %s',$x*$this->k,($this->h-$y)*$this->k,$w*$this->k,-$h*$this->k,$op));
-}
+}*/
 
 function AddFont($family, $style='', $file='')
 {
@@ -873,7 +874,7 @@ function Write($h, $txt, $link='')
 	if($i!=$j)
 		$this->Cell($l/1000*$this->FontSize,$h,substr($s,$j),0,0,'',false,$link);
 }
-
+/*
 function Ln($h=null)
 {
 	// Line feed; default value is the last cell height
@@ -999,6 +1000,7 @@ function SetXY($x, $y)
 	$this->SetX($x);
 	$this->SetY($y,false);
 }
+*/
 
 function Output($dest='', $name='', $isUTF8=false)
 {
