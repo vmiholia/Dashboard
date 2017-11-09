@@ -391,7 +391,7 @@ if (false === $basic) {
 }
 $cname=$_GET['Class'];//"4 A";
 $Class=$cname;
-
+/*
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
@@ -415,4 +415,5 @@ $Class=$cname;
 	$myfile2 = fopen('files/'.$name, "r") or die("Unable to open file!");
 	fclose($myfile2);
 	$pdf->Output();
+	*/
 ?>
