@@ -23,7 +23,7 @@ $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
 
 require('http://34.237.224.144/Dashboard/fpdf/fpdf.php');
-
+/*
 class PDF extends FPDF{
 
 function BuildTable($count,$basic_info,$other_info,$marks,$marks2,$Admission_No,$class) {
@@ -315,7 +315,7 @@ $this->SetFontSize(10);
 		}
 	}
 	
-/*
+
 
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
