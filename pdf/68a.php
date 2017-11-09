@@ -391,7 +391,7 @@ if (false === $basic) {
 }
 $cname=$_GET['Class'];//"4 A";
 $Class=$cname;
-/*
+
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
@@ -403,9 +403,9 @@ $Class=$cname;
 	$Section=substr($row['Class'],-1,1);
 	$DOB=$row['DOB'];
 	$uid=$row['uid'];
-	//$Admission_No=$row['Admission_No'];
+
 	$basic_info=array($Student_name,$Fathers_name,$Mothers_name,$DOB,$Class_no,$Section,$Admission_No);
-	include('queries.php');
+	//include('queries.php');
 
 	$pdf->BuildTable($count,$basic_info,$other_info,$marks,$marks2,$Admission_No,$Class);
 
@@ -415,5 +415,4 @@ $Class=$cname;
 	$myfile2 = fopen('files/'.$name, "r") or die("Unable to open file!");
 	fclose($myfile2);
 	$pdf->Output();
-*/
 ?>
