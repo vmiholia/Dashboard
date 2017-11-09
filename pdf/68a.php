@@ -8,7 +8,7 @@ echo $Class;
 $Admission_No=$_GET['Adm_No'];
 echo $Admission_No;
 $count=1;
-ini_set('max_execution_time', 3000);
+//ini_set('max_execution_time', 3000);
 
 if(substr($Class,0,1)=='6' ||substr($Class,0,1)=='7' || substr($Class,0,1)=='8')	
 {
@@ -23,19 +23,9 @@ $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
 
 require('http://34.237.224.144/Dashboard/fpdf/fpdf.php');
-/*
-class PDF extends FPDF{
-	function Header()
-	{
-		
-	}
-	function Footer(){
-		
-  //  $this->SetFont('Arial','I',8);
-    //Page number
-   // $this->Cell(0,16,'Page '.$this->PageNo().'/{nb}',0,0,'R');
 
-	}
+class PDF extends FPDF{
+
 function BuildTable($count,$basic_info,$other_info,$marks,$marks2,$Admission_No,$class) {
 	$q2="select ROLLNO,attendance,Discipline,Work_Education,Art_Education,Health_and_Physical_Education,Remarks,Participation_in from LFPS68FINALD WHERE Class='".$class."' AND admno='".$Admission_No."'";
 
@@ -326,6 +316,7 @@ $this->SetFontSize(10);
 	}
 	
 
+/*
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 
