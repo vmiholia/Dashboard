@@ -7,7 +7,7 @@ $database="bitnami_moodle";
 $Class=$_GET['Class'];//"4 A";s
 $server = mysql_connect($host, $username, $password);
 $connection = mysql_select_db($database, $server);
-ini_set('max_execution_time', 3000);
+/*ini_set('max_execution_time', 3000);
 
 class PDF extends FPDF{
 	function Header()
@@ -803,5 +803,6 @@ While($row = mysql_fetch_array($basic)) {
  header("Expires: 0"); 
  readfile("$zip_name","files/");
 //echo $file_contents;
+*/
 
 ?>
